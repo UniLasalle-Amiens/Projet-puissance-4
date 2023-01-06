@@ -2,11 +2,17 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+// Utilitaires
 #include "src/utils.h"
+#include "src/structs.h"
 
+// Affichage
 #include "src/afficherMenu.h"
 #include "src/afficherRegles.h"
-#include "src/game.h"
+
+// App
+#include "src/app/affichagePlateau.h"
+#include "src/app/game.h"
 
 
 int main ( int argc, char const **argv [] ) {

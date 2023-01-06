@@ -10,6 +10,8 @@
 // Constantes de Jeu
 #define LIGNES 6
 #define COLONNES 7
+#define PIONS 42
+#define PIONS_EQUIPE 21
 
 
 // Constantes Couleurs

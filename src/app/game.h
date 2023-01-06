@@ -2,7 +2,7 @@
 #define GAME_H
 
 void game ( int choix ) {
-
+    afficherPlateau ();
 }
 
 #endif
