@@ -11,6 +11,7 @@ void initCase ( Pion plateau [ COLONNES ] [ LIGNES ] ) {
     for ( int x = 0 ; x < COLONNES ; x++ )
         for ( int y = 0 ; y < LIGNES ; y++ ) {
             plateau [ x ] [ y ].character = ' ';
+            strcpy ( plateau [ x ] [ y ].color, RESET );
         }
 }
 
