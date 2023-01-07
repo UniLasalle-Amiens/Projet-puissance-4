@@ -2,7 +2,10 @@
 #define GAME_H
 
 void game ( int choix ) {
-    afficherPlateau ();
+    Pion plateau [ COLONNES ] [ LIGNES ];
+    
+    initCase ( plateau );
+    afficherPlateau ( plateau );
 }
 
 #endif

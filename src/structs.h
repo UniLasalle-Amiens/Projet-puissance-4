@@ -4,7 +4,3 @@ typedef struct {
     int x;
     int y;
 } Pion;
-
-typedef struct {
-    Pion pion;
-} Plateau;

@@ -12,6 +12,7 @@
 
 // App
 #include "src/app/affichagePlateau.h"
+#include "src/app/initCase.h"
 #include "src/app/game.h"
 
 

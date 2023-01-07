@@ -4,25 +4,29 @@
 /**
  * Fonction permettant l'affichage du plateau de jeu dans la console
  * @name afficherPlateau
+ * @param p Tableau à double dimension contenant toutes les cases du plateau de jeu
  * @return void
 */
-void afficherPlateau () {
+void afficherPlateau ( Pion p [ COLONNES ] [ LIGNES ] ) {
     clear ();
-    int line = 1;
+
+    // Affichage haut du plateau de jeu
+    printf ( "\t\t" );
 
     for ( int i = 0 ; i < COLONNES ; i++ )
         printf ( " _" );
     
+
+    // Affichage du plateau de jeu
     for ( int i = 0 ; i < LIGNES ; i++ ) {
         printf ( "\n" );
-        printf ( "|" );
+        
+        printf ( "\t\t|" );
 
-        for ( int i = 0 ; i < COLONNES ; i++ ) {
-            printf ( " " );
+        for ( int y = 0 ; y < COLONNES ; y++ ) {
+            printf ( "%c", p [ y ] [ i ].character );
             printf ( "|" );
         }
-
-        line++;
     }
 }
 #endif

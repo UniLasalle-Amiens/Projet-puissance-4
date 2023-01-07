@@ -22,6 +22,11 @@ void afficherMenu ( int *c ) {
     printf ( "\t3: Règles du jeu\n\n" );
 
     printf ( "Veuillez faire votre choix: " );
+
+    #ifdef WIN32
+    fflush ( stdin );
+    #endif
+    
     scanf ( "%d", c );
 }
 
