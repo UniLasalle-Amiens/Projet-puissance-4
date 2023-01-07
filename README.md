@@ -4,6 +4,8 @@
 
 ## How to compile and debug on LINUX and MAC with "make"
 
+> On the main repository | require gcc
+
 ```batch
 make compile
 ```
@@ -14,7 +16,7 @@ make debug
 
 ## How to compile and debug on WINDOWS
 
-> On the main repository
+> On the main repository | require gcc
 
 ```batch
 gcc main.c -o <output name file>
