@@ -23,7 +23,8 @@
 
 int main ( int argc, char const **argv [] ) {
     bool loop = true;
-    int choix, level_IA;
+    int choix;
+    int level;
 
     while ( loop ) {
         afficherMenu ( &choix );
@@ -38,14 +39,14 @@ int main ( int argc, char const **argv [] ) {
                 fflush ( stdin );
                 #endif
                 
-                scanf ( "%d", &level_IA );
+                scanf ( "%d", &level );
                 
-                game ( 1, level_IA, &loop );
+                game ( 1, level, &loop );
                 loop = false;
                 break;
             
             case 2:
-                game ( 2, level_IA, &loop );
+                game ( 2, level, &loop );
                 loop = false;
                 break;
 

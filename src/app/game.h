@@ -12,19 +12,23 @@
 void game ( int choix, int level_IA, bool *loop ) {
     Pion plateau [ COLONNES ] [ LIGNES ]; // Création du plateau
 
+    bool reply;
+
     int joueur = 2; // 1 ou 2 En fonction du joueur qui doit jouer
-    int col; // Colonne choisie par l'utilisateur
+    int col; // Colonne choisie par l'utilisateur ou par l'IA
 
     initCase ( plateau );
     
     while ( *loop ) {
+        color ( RESET );
         afficherPlateau ( plateau ); // Affichage du plateau
 
-        tourJoueur ( &joueur ); // Permet le changement de joueur
+        if ( !reply )
+            joueur = tourJoueur ( joueur ); // Permet le changement de joueur
 
         if ( joueur == 1 )
             color ( ROUGE );
-        else
+        else if ( choix == 2 )
             color ( JAUNE );
         
 
@@ -44,7 +48,7 @@ void game ( int choix, int level_IA, bool *loop ) {
 
             } else {
                 if ( level_IA == 1 )
-                    col = random_number (); // Génération d'un nombre entier aléatoire entre 0 et 7 inclus
+                    col = random_number (); // Génération d'un nombre entier aléatoire entre 1 et 7 inclus
             }
 
         } else {
@@ -58,21 +62,33 @@ void game ( int choix, int level_IA, bool *loop ) {
             #endif
 
             scanf ( "%d", &col );
-
         }
         
-        if ( plateau [ col - 1 ] [ 0 ].character == '0' && joueur != 2 ) { // On vérifie si la colonne n'est pas pleine
-            clear ();
-            printf ( "Cette colonne est pleine, veuillez en choisir une autre" );
+        // On vérifie si la colonne choisie n'est pas pleine
+        if ( plateau [ col - 1 ] [ 0 ].character == '0' ) {
+            if ( joueur != 2 && choix == 1 || choix == 2 ) {
+                reply = true;
+
+                clear ();
+                printf ( "Cette colonne est pleine, veuillez en choisir une autre" );
+
+                #ifndef WIN32
+                flush_linux ();
+                #endif
+                PAUSE ();
+
+            }
+
+        } else {
+            reply = false;
 
             #ifndef WIN32
             flush_linux ();
             #endif
 
-            PAUSE ();
-
-        } else
             ajouterPion ( plateau, col, joueur );
+        }
+
     }
 }
 

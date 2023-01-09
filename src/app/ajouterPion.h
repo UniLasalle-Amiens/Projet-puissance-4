@@ -11,7 +11,7 @@
 */
 void ajouterPion ( Pion plateau [ COLONNES ] [ LIGNES ], int c, int joueur ) {
     int line = 0;
-    bool down;
+    bool down = true;
     char color [ 40 ];
 
     if ( joueur == 1 )
@@ -25,7 +25,7 @@ void ajouterPion ( Pion plateau [ COLONNES ] [ LIGNES ], int c, int joueur ) {
 
         else {
             plateau [ c - 1 ] [ line - 1 ].character = '0';
-            strcpy ( plateau [ c - 1 ] [ line - 1].color, color );
+            strcpy ( plateau [ c - 1 ] [ line - 1 ].color, color );
             
             down = false;
         }

@@ -4,12 +4,12 @@
 /**
  * Fonction permettant de faire jouer un à un les deux joueurs de la partie
  * @name tourJoueur
- * @return void
+ * @return Integer, soit 1, soit 2 en fonction du joueur venant de jouer
 */
-void tourJoueur ( int *joueur ) {
-    if ( *joueur % 2 == 0 )
-        *joueur = 1;
+int tourJoueur ( int joueur ) {
+    if ( joueur % 2 == 0 )
+        return 1;
     else
-        *joueur = 2;
+        return 2;
 }
 #endif

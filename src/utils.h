@@ -75,11 +75,11 @@ int printFile ( FILE *file ) {
 /**
  * Permet de retourner un nombre aléatoire entre 0 7 inclus
  * @name random_number
- * @return Nombre entier entre 0 et 7 inclus
+ * @return Nombre entier entre 1 et 7 inclus
 */
 int random_number() {
     srand(time(NULL));  // Initialisation de rand() avec une seed différente à chaque exécution
-    return rand() % 8;  // Retourne un nombre entier aléatoire compris entre 0 et 7 (inclus)
+    return rand() % 7 + 1;  // Retourne un nombre entier aléatoire compris entre 0 et 7 (inclus)
 }
 
 #ifndef WIN32
