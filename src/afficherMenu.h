@@ -17,10 +17,10 @@ void afficherMenu ( int *c ) {
     printf ( "\n\n\n" );
 
     printf ( "Bienvenue sur le jeu !\n" );
+
     printf ( "\t1: Jouer contre l'ordinateur\n" );
     printf ( "\t2: Jouer contre un joueur\n" );
     printf ( "\t3: Règles du jeu\n\n" );
-
     printf ( "Veuillez faire votre choix: " );
 
     #ifdef WIN32

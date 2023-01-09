@@ -21,7 +21,7 @@ void afficherPlateau ( Pion p [ COLONNES ] [ LIGNES ] ) {
     for ( int i = 0 ; i < LIGNES ; i++ ) {
         printf ( "\n" );
         
-        printf ( "\t\t%d |", i + 1 );
+        printf ( "\t\t  |", i + 1 );
 
         for ( int y = 0 ; y < COLONNES ; y++ ) {
             printf ( "%s", p [ y ] [ i ].color );

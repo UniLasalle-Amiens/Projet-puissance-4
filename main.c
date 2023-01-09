@@ -14,6 +14,9 @@
 // App
 #include "src/app/affichagePlateau.h"
 #include "src/app/initCase.h"
+#include "src/app/ajouterPion.h"
+#include "src/app/tourJoueur.h"
+
 #include "src/app/game.h"
 
 
@@ -30,12 +33,12 @@ int main ( int argc, char const **argv [] ) {
 
         switch ( choix ) {
             case 1:
-                game ( 1 );
+                game ( 1, &loop );
                 loop = false;
                 break;
             
             case 2:
-                game ( 2 );
+                game ( 2, &loop );
                 loop = false;
                 break;
 

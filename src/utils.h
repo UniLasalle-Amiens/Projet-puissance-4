@@ -28,6 +28,8 @@
 
 /**
  * Permet de faire une pause dans le programme
+ * @name PAUSE
+ * @return void
 */
 void PAUSE () {
     #ifndef WIN32
@@ -66,7 +68,7 @@ int printFile ( FILE *file ) {
 
     } else {
         while ( fgets ( line, sizeof ( line ), file ) != NULL )
-            printf ( "%s", line );
+            printf ( "\t%s", line );
     }
 }
 
