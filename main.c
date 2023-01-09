@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
+#include <time.h>
 
 // Utilitaires
 #include "src/utils.h"
@@ -22,23 +23,29 @@
 
 int main ( int argc, char const **argv [] ) {
     bool loop = true;
-    int choix;
-    
-    clear ();
-    color ( CYAN );
-    color ( RESET );
+    int choix, level_IA;
 
     while ( loop ) {
         afficherMenu ( &choix );
 
         switch ( choix ) {
             case 1:
-                game ( 1, &loop );
+                printf ( "\n\nVeuillez choisir la difficulté" );
+                printf ( "\n\t1: NUL\n\t2: MOYEN" );
+                printf ( "\n\nVotre choix: " );
+
+                #ifdef WIN32
+                fflush ( stdin );
+                #endif
+                
+                scanf ( "%d", &level_IA );
+                
+                game ( 1, level_IA, &loop );
                 loop = false;
                 break;
             
             case 2:
-                game ( 2, &loop );
+                game ( 2, level_IA, &loop );
                 loop = false;
                 break;
 
