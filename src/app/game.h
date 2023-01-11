@@ -16,6 +16,7 @@ void game ( int choix, int level_IA, bool *loop ) {
 
     int joueur = 2; // 1 ou 2 En fonction du joueur qui doit jouer
     int col; // Colonne choisie par l'utilisateur ou par l'IA
+    bool ask; // Variable locale pour la gestion d'erreur de saisie de l'utilisateur
 
     initCase ( plateau );
     
@@ -25,16 +26,57 @@ void game ( int choix, int level_IA, bool *loop ) {
 
         if ( !reply )
             joueur = tourJoueur ( joueur ); // Permet le changement de joueur
-
-        if ( joueur == 1 )
-            color ( ROUGE );
-        else if ( choix == 2 )
-            color ( JAUNE );
         
 
         // On vérifie si le joueur qui doit jouer est l'IA ou non par rapport au choix du joueur au lancement du jeu
         if ( choix == 1 ) {
             if ( joueur == 1 ) {
+                do {
+                    color ( ROUGE );
+
+                    printf ( "\n\nJoueur %d à vous de jouer", joueur );
+                    color ( RESET );
+                    
+                    printf ( "\n\nVeuillez choisir une colonne: " );
+
+                    #ifdef WIN32
+                    fflush ( stdin );
+                    #endif
+
+                    scanf ( "%d", &col );
+
+                    // Gestion des potentielles erreurs de saisie de l'utilisateur
+                    if ( col < 1 || col > 7 ) {
+                        printf ( "\n\nVous devez choisir une colonne parmis celles disponibles sur la plateau" );
+
+                        #ifdef __linux__
+                        flush_linux ();
+                        #endif
+
+                        PAUSE ();
+
+                        if ( !ask )
+                            ask = true;
+
+                    } else
+                        ask = false;
+
+                } while ( ask );
+
+
+            // Tour de l'IA
+            } else {
+                if ( level_IA == 1 )
+                    col = random_number (); // Génération d'un nombre entier aléatoire entre 1 et 7 inclus
+            }
+
+        } else {
+            do {
+                if ( joueur == 1 )
+                    color ( ROUGE );
+                else
+                    color ( JAUNE );
+
                 printf ( "\n\nJoueur %d à vous de jouer", joueur );
                 color ( RESET );
                 
@@ -46,29 +88,30 @@ void game ( int choix, int level_IA, bool *loop ) {
 
                 scanf ( "%d", &col );
 
-            } else {
-                if ( level_IA == 1 )
-                    col = random_number (); // Génération d'un nombre entier aléatoire entre 1 et 7 inclus
-            }
+                // Gestion des potentielles erreurs de saisie de l'utilisateur
+                if ( col < 1 || col > 7 ) {
+                    printf ( "\n\nVous devez choisir une colonne parmis celles disponibles sur la plateau" );
 
-        } else {
-            printf ( "\n\nJoueur %d à vous de jouer", joueur );
-            color ( RESET );
-            
-            printf ( "\n\nVeuillez choisir une colonne: " );
+                    #ifdef __linux__
+                    flush_linux ();
+                    #endif
 
-            #ifdef WIN32
-            fflush ( stdin );
-            #endif
+                    PAUSE ();
 
-            scanf ( "%d", &col );
+                    if ( !ask )
+                        ask = true;
+
+                } else
+                    ask = false;
+                    
+            } while ( ask );
         }
         
         // On vérifie si la colonne choisie n'est pas pleine
         if ( plateau [ col - 1 ] [ 0 ].character == '0' ) {
-            if ( joueur != 2 && choix == 1 || choix == 2 ) {
-                reply = true;
+            reply = true;
 
+            if ( joueur != 2 && choix == 1 || choix == 2 ) {
                 clear ();
                 printf ( "Cette colonne est pleine, veuillez en choisir une autre" );
 
@@ -88,7 +131,6 @@ void game ( int choix, int level_IA, bool *loop ) {
 
             ajouterPion ( plateau, col, joueur );
         }
-
     }
 }
 

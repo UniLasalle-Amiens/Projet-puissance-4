@@ -22,7 +22,7 @@
 
 
 int main ( int argc, char const **argv [] ) {
-    bool loop = true;
+    bool loop = true, ask;
     int choix;
     int level;
 
@@ -31,29 +31,58 @@ int main ( int argc, char const **argv [] ) {
 
         switch ( choix ) {
             case 1:
-                printf ( "\n\nVeuillez choisir la difficulté" );
-                printf ( "\n\t1: NUL\n\t2: MOYEN" );
-                printf ( "\n\nVotre choix: " );
+                do {
+                    clear ();
+                    printf ( "Veuillez choisir la difficulté" );
+                    printf ( "\n\t1: NUL\n\t2: FORT" );
+                    printf ( "\n\nVotre choix: " );
 
-                #ifdef WIN32
-                fflush ( stdin );
-                #endif
+                    #ifdef WIN32
+                    fflush ( stdin );
+                    #endif
+
+                    scanf ( "%d", &level );
+
+                    if ( level != 2 && level != 1 ) {
+                        printf ( "\n\nNiveau d'IA inconnu" );
+
+                        #ifdef __linux__
+                        flush_linux ();
+                        #elif __APPLE__
+                        fflush ( stdin );
+                        #endif
+                        PAUSE ();
+
+                        ask = true;
+
+                    } else
+                        ask = false;
+
+                } while ( ask );
                 
-                scanf ( "%d", &level );
-                
-                game ( 1, level, &loop );
-                loop = false;
-                break;
-            
-            case 2:
-                game ( 2, level, &loop );
-                loop = false;
-                break;
+                if ( !ask )
+                    break;
+                else
+                    continue;
 
             case 3:
                 afficherRegles ();
                 break;
+
+            default:
+                printf ( "\n\nVeuillez choisir une des options disponibles au dessus" );
+
+                #ifdef __linux__
+                flush_linux ();
+                #elif __APPLE__
+                fflush ( stdin );
+                #endif
+
+                PAUSE ();
+                continue;
         }
+
+        game ( choix, level, &loop );
     }
 
     return EXIT_SUCCESS;
