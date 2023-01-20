@@ -82,7 +82,7 @@ int random_number() {
     return rand() % 7 + 1;  // Retourne un nombre entier aléatoire compris entre 0 et 7 (inclus)
 }
 
-#ifndef WIN32
+#ifdef __linux__
     /**
      * Permet de vider la cache stdin
      * @name flush_linux

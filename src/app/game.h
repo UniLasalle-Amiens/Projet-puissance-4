@@ -94,6 +94,8 @@ void game ( int choix, int level_IA, bool *loop ) {
 
                     #ifdef __linux__
                     flush_linux ();
+                    #elif __APPLE__
+                    fflush ( stdin );
                     #endif
 
                     PAUSE ();
@@ -115,8 +117,10 @@ void game ( int choix, int level_IA, bool *loop ) {
                 clear ();
                 printf ( "Cette colonne est pleine, veuillez en choisir une autre" );
 
-                #ifndef WIN32
+                #ifdef __linux__
                 flush_linux ();
+                #elif __APPLE__
+                fflush ( stdin );
                 #endif
                 PAUSE ();
 
@@ -125,8 +129,10 @@ void game ( int choix, int level_IA, bool *loop ) {
         } else {
             reply = false;
 
-            #ifndef WIN32
+            #ifdef __linux__
             flush_linux ();
+            #elif __APPLE__
+            fflush ( stdin );
             #endif
 
             ajouterPion ( plateau, col, joueur );

@@ -22,8 +22,10 @@ void afficherRegles () {
     
     color ( RESET );
     
-    #ifndef WIN32
-        getchar ();
+    #ifdef __linux__
+        flush_linux ();
+    #elif __APPLE__
+        fflush ( stdin );
     #endif
 
     PAUSE ();
