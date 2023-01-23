@@ -140,24 +140,24 @@ void game ( int choix, int level_IA, bool *loop ) {
 
             if ( score != 1 && score != 2 )
                 ajouterPion ( plateau, col, &ligne, joueur );
+            
 
-        }
+            score = win ( plateau, ligne, col, joueur );
         
-        score = win ( plateau, ligne, col, joueur );
-        
-        if ( score == 1 ) {
-            color ( ROUGE );
-            printf ( "\n\nLe joueur 1 à gagné !!" );
-            color ( RESET );
-            PAUSE ();
-            *loop = false;
+            if ( score == 1 ) {
+                color ( ROUGE );
+                printf ( "\n\nLe joueur 1 à gagné !!" );
+                color ( RESET );
+                PAUSE ();
+                *loop = false;
 
-        } else if ( score == 2 ) {
-            color ( JAUNE );
-            printf ( "\n\nLe joueur 2 à gagné !!" );
-            color ( RESET );
-            PAUSE ();
-            *loop = false;
+            } else if ( score == 2 ) {
+                color ( JAUNE );
+                printf ( "\n\nLe joueur 2 à gagné !!" );
+                color ( RESET );
+                PAUSE ();
+                *loop = false;
+            }
         }
     }
 }

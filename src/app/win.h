@@ -23,7 +23,16 @@ int win (Pion plateau[COLONNES][LIGNES], int ligne, int colonne, int joueur ) {
         strcpy ( couleur, JAUNE );
 
     // Vérification verticale
-    
+    for ( int i = 0 ; i <= 3 ; i++ ) {
+        if ( strcmp ( couleur, plateau [ colonne - 1 ] [ ligne + i ].color ) == 0 )
+            streak++;
+
+        if ( streak == 3 )
+            if ( joueur == 1 )
+                score = 1;
+            else
+                score = 2;
+    }
 
     return score;
 }
