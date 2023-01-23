@@ -13,9 +13,11 @@ void game ( int choix, int level_IA, bool *loop ) {
     Pion plateau [ COLONNES ] [ LIGNES ]; // Création du plateau
 
     bool reply;
-
+    int score;
     int joueur = 2; // 1 ou 2 En fonction du joueur qui doit jouer
     int col; // Colonne choisie par l'utilisateur ou par l'IA
+    int ligne; // Ligne où le pion est tombé
+
     bool ask; // Variable locale pour la gestion d'erreur de saisie de l'utilisateur
 
     initCase ( plateau );
@@ -123,7 +125,6 @@ void game ( int choix, int level_IA, bool *loop ) {
                 fflush ( stdin );
                 #endif
                 PAUSE ();
-
             }
 
         } else {
@@ -134,8 +135,26 @@ void game ( int choix, int level_IA, bool *loop ) {
             #elif __APPLE__
             fflush ( stdin );
             #endif
+            
+            score = win ( plateau, ligne, col, joueur );
 
-            ajouterPion ( plateau, col, joueur );
+            if ( score == 1 ) {
+                color ( ROUGE );
+                printf ( "\n\nLe joueur 1 à gagné !!" );
+                color ( RESET );
+                PAUSE ();
+                *loop = false;
+
+            } else if ( score == 2 ) {
+                color ( JAUNE );
+                printf ( "\n\nLe joueur 2 à gagné !!" );
+                color ( RESET );
+                PAUSE ();
+                *loop = false;
+            }
+
+            if ( score != 1 && score != 2 )
+                ajouterPion ( plateau, col, &ligne, joueur );
         }
     }
 }

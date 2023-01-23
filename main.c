@@ -17,6 +17,7 @@
 #include "src/app/initCase.h"
 #include "src/app/ajouterPion.h"
 #include "src/app/tourJoueur.h"
+#include "src/app/win.h"
 
 #include "src/app/game.h"
 
@@ -60,10 +61,16 @@ int main ( int argc, char const **argv [] ) {
 
                 } while ( ask );
                 
-                if ( !ask )
+                if ( !ask ) {
+                    game ( choix, level, &loop );
                     break;
-                else
+
+                } else
                     continue;
+
+            case 2:
+                game ( choix, level, &loop );
+                break;
 
             case 3:
                 afficherRegles ();
@@ -81,8 +88,6 @@ int main ( int argc, char const **argv [] ) {
                 PAUSE ();
                 continue;
         }
-
-        game ( choix, level, &loop );
     }
 
     return EXIT_SUCCESS;

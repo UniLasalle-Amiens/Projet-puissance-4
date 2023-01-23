@@ -56,7 +56,7 @@ void color ( char c [] ) {
  * Permet d'afficher dans la console le contenu du fichier ouvert
  * @name printFile
  * @param *file fichier possédant le contenue à afficher
- * @return void
+ * @return integer || void
 */
 int printFile ( FILE *file ) {
     char line [ 256 ];

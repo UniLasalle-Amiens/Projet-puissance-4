@@ -6,10 +6,11 @@
  * @name ajouterPion
  * @param plateau Tableau double dimension contenant toutes les caractéristiques de chaque case du plateau de jeu
  * @param c Colonne choisit par l'utilisateur
+ * @param l Pointeur vers la variable stockant la dernière ligne du plateau où le pion est tombé
  * @param joueur Type integer contenant soit le joueur 1 ou 2 qui doit jouer
  * @return void
 */
-void ajouterPion ( Pion plateau [ COLONNES ] [ LIGNES ], int c, int joueur ) {
+void ajouterPion ( Pion plateau [ COLONNES ] [ LIGNES ], int c, int *l, int joueur ) {
     int line = 0;
     bool down = true;
     char color [ 40 ];
@@ -31,6 +32,8 @@ void ajouterPion ( Pion plateau [ COLONNES ] [ LIGNES ], int c, int joueur ) {
         }
 
     } while ( down );
+
+    *l = line;
 }
 
 #endif
