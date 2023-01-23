@@ -136,6 +136,8 @@ void game ( int choix, int level_IA, bool *loop ) {
             fflush ( stdin );
             #endif
 
+            printf ( "\n\n" );
+
             if ( score != 1 && score != 2 )
                 ajouterPion ( plateau, col, &ligne, joueur );
 

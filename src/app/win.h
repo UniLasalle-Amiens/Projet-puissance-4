@@ -23,27 +23,9 @@ int win (Pion plateau[COLONNES][LIGNES], int ligne, int colonne, int joueur ) {
         strcpy ( couleur, JAUNE );
 
     // Vérification verticale
-    while ( plateau [ colonne ] [ ligne + count ].character != ' ' ) {
-        if ( plateau [ colonne ] [ ligne + count ].character == '0' ) {
-            printf ( "pareil" );
-            PAUSE ();
-        }
-
-        if ( streak == 4 ) {
-            if ( joueur == 1 )
-                score = 1;
-            else
-                score = 2;
-
-            break;
-        }
-
-
-        count++;
-    }
+    
 
     return score;
 }
-
 
 #endif

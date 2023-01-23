@@ -13,7 +13,7 @@
 void ajouterPion ( Pion plateau [ COLONNES ] [ LIGNES ], int c, int *l, int joueur ) {
     int line = 0;
     bool down = true;
-    char couleur [ 40 ];
+    char couleur [ 256 ];
 
     if ( joueur == 1 )
         strcpy ( couleur, ROUGE );
