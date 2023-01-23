@@ -1,3 +1,2 @@
 plateau: 7 colonnes et 6 lignes
-nombre de trous par ligne: 7    ;   par colonnes: 6
 font ASCII-ART: Big Money-sw
