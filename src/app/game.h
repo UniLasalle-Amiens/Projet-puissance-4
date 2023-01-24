@@ -26,6 +26,23 @@ void game ( int choix, int level_IA, bool *loop ) {
         color ( RESET );
         afficherPlateau ( plateau ); // Affichage du plateau
 
+        if ( score == 1 ) {
+            color ( ROUGE );
+            printf ( "\n\nLe joueur 1 à gagné !!" );
+            color ( RESET );
+            PAUSE ();
+            *loop = false;
+            break;
+
+        } else if ( score == 2 ) {
+            color ( JAUNE );
+            printf ( "\n\nLe joueur 2 à gagné !!" );
+            color ( RESET );
+            PAUSE ();
+            *loop = false;
+            break;
+        }
+
         if ( !reply )
             joueur = tourJoueur ( joueur ); // Permet le changement de joueur
         
@@ -143,21 +160,6 @@ void game ( int choix, int level_IA, bool *loop ) {
             
 
             score = win ( plateau, ligne, col, joueur );
-        
-            if ( score == 1 ) {
-                color ( ROUGE );
-                printf ( "\n\nLe joueur 1 à gagné !!" );
-                color ( RESET );
-                PAUSE ();
-                *loop = false;
-
-            } else if ( score == 2 ) {
-                color ( JAUNE );
-                printf ( "\n\nLe joueur 2 à gagné !!" );
-                color ( RESET );
-                PAUSE ();
-                *loop = false;
-            }
         }
     }
 }
