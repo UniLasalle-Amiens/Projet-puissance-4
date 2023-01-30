@@ -6,13 +6,12 @@
  * @name game
  * @param choix Variable de type integer contenant le choix du joueur pour le type de partie
  * @param level_IA Choix par l'utilisateur du level de l'IA pour le jeu
- * @param *loop Variables de type boolean pour la bouclle du jeu
  * @return void
 */
-void game ( int choix, int level_IA, bool *loop ) {
+void game ( int choix, int level_IA ) {
     Pion plateau [ COLONNES ] [ LIGNES ]; // Création du plateau
 
-    bool reply;
+    bool reply, loop = true;
     int score;
     int joueur = 2; // 1 ou 2 En fonction du joueur qui doit jouer
     int col; // Colonne choisie par l'utilisateur ou par l'IA
@@ -22,7 +21,7 @@ void game ( int choix, int level_IA, bool *loop ) {
 
     initCase ( plateau );
     
-    while ( *loop ) {
+    while ( loop ) {
         color ( RESET );
         afficherPlateau ( plateau ); // Affichage du plateau
 
@@ -31,7 +30,7 @@ void game ( int choix, int level_IA, bool *loop ) {
             printf ( "\n\nLe joueur 1 à gagné !!" );
             color ( RESET );
             PAUSE ();
-            *loop = false;
+            loop = false;
             break;
 
         } else if ( score == 2 ) {
@@ -39,7 +38,7 @@ void game ( int choix, int level_IA, bool *loop ) {
             printf ( "\n\nLe joueur 2 à gagné !!" );
             color ( RESET );
             PAUSE ();
-            *loop = false;
+            loop = false;
             break;
         }
 

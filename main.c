@@ -62,18 +62,27 @@ int main ( int argc, char const **argv [] ) {
                 } while ( ask );
                 
                 if ( !ask ) {
-                    game ( choix, level, &loop );
+                    game ( choix, level );
                     break;
 
                 } else
                     continue;
 
             case 2:
-                game ( choix, level, &loop );
+                game ( choix, level );
                 break;
 
             case 3:
                 afficherRegles ();
+                break;
+
+            case 4:
+                loop = false;
+                clear ();
+                
+                color ( MAGENTA );
+                printFile ( fopen ( "tools/thanks.txt", "r" ) );
+                color ( RESET );
                 break;
 
             default:

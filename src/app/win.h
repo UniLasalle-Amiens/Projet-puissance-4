@@ -22,15 +22,11 @@ int win (Pion plateau[COLONNES][LIGNES], int ligne, int colonne, int joueur ) {
         strcpy ( couleur, JAUNE );
 
     // Vérification verticale
-    for ( int i = 0 ; i <= 3 ; i++ ) {
-        if ( strcmp ( couleur, plateau [ colonne - 1 ] [ ligne + i ].color ) == 0 )
-            streak++;
-        else {
-            streak = 0;
+    for ( int i = 1 ; i < 4 ; i++ ) {
+        if ( strcmp ( couleur, plateau [ colonne - 1 ] [ ( ligne - 1 ) + i ].color ) != 0 )
             break;
-        }
 
-        if ( streak == 3 )
+        if ( i == 3 )
             if ( joueur == 1 )
                 score = 1;
             else
@@ -40,35 +36,30 @@ int win (Pion plateau[COLONNES][LIGNES], int ligne, int colonne, int joueur ) {
     // Si l'un des deux joueurs n'a toujours pas gagné, alors on vérifie d'autres combinaisons possibles
     if ( score != 1 && score != 2 ) {
 
-        // // Vérification horizontale à droite
-        // for ( int i = 0 ; i <= 3 ; i++ ) {
-        //     if ( strcmp ( plateau [ colonne - i ] [ ligne - 1 ].color, couleur ) == 0 )
-        //         streak++;
-        //     else
-        //         break;
+        // Vérification horizontale à gauche
+        for ( int i = 1 ; i < 4 ; i++ ) {
+            if ( strcmp ( plateau [ ( colonne - 1 ) - i ] [ ligne - 1 ].color, couleur ) == 0 )
+                streak++;
 
-        //     if ( streak == 2 )
-        //         if ( joueur == 1 )
-        //             score = 1;
-        //         else
-        //             score = 2;
-        // }
+            else
+                break;
+        }
 
         // Vérification horizontale à droite
-        for ( int i = 0 ; i <= 3 ; i++ ) {
-            if ( strcmp ( plateau [ colonne + i ] [ ligne - 1 ].color, couleur ) == 0 )
+        for ( int i = 1 ; i < 4 ; i++ ) {
+            if ( strcmp ( plateau [ ( colonne - 1 ) + i ] [ ligne - 1 ].color, couleur ) == 0 )
                 streak++;
-            else {
-                streak = 0;
-                break;
-            }
 
-            if ( streak == 3 )
-                if ( joueur == 1 )
-                    score = 1;
-                else
-                    score = 2;
+            else
+                break;
         }
+
+        // Si trois pions alignés horizontalement alors le joueur à gagné
+        if ( streak == 3 )
+            if ( joueur == 1 )
+                score = 1;
+            else
+                score = 2;
     }
 
     return score;
