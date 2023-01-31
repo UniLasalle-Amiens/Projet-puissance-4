@@ -3,6 +3,7 @@
 #include <stdbool.h>
 #include <string.h>
 #include <time.h>
+#include <limits.h>
 
 // Utilitaires
 #include "src/utils.h"
@@ -18,6 +19,11 @@
 #include "src/app/ajouterPion.h"
 #include "src/app/tourJoueur.h"
 #include "src/app/win.h"
+
+// AI
+#include "src/app/AI/evaluerScore.h"
+#include "src/app/AI/getLigneLibre.h"
+#include "src/app/AI/jouerCoup.h"
 
 #include "src/app/game.h"
 
@@ -35,7 +41,7 @@ int main ( int argc, char const **argv [] ) {
                 do {
                     clear ();
                     printf ( "Veuillez choisir la difficulté" );
-                    printf ( "\n\t1: NUL\n\t2: FORT" );
+                    printf ( "\n\t1: FAIBLE\n\t2: MOYEN\n\t3: FORT" );
                     printf ( "\n\nVotre choix: " );
 
                     #ifdef WIN32
@@ -44,7 +50,7 @@ int main ( int argc, char const **argv [] ) {
 
                     scanf ( "%d", &level );
 
-                    if ( level != 2 && level != 1 ) {
+                    if ( level != 2 && level != 1 && level != 3 ) {
                         printf ( "\n\nNiveau d'IA inconnu" );
 
                         #ifdef __linux__

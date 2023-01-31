@@ -17,6 +17,8 @@ void game ( int choix, int level_IA ) {
     int col; // Colonne choisie par l'utilisateur ou par l'IA
     int ligne; // Ligne où le pion est tombé
 
+    int altern = 1; // Variable permettant d'alterner les coups joués par l'IA / un coup fort, un coup faible
+
     bool ask; // Variable locale pour la gestion d'erreur de saisie de l'utilisateur
 
     initCase ( plateau );
@@ -86,6 +88,17 @@ void game ( int choix, int level_IA ) {
             } else {
                 if ( level_IA == 1 )
                     col = random_number (); // Génération d'un nombre entier aléatoire entre 1 et 7 inclus
+
+                else if ( level_IA == 2 ) {
+                    if ( altern == 1 )
+                        col = jouerCoup ( plateau, JAUNE );
+                    else
+                        col = random_number ();
+
+                    altern *= -1;
+                    
+                } else
+                    col = jouerCoup ( plateau, JAUNE );
             }
 
         } else {
