@@ -33,7 +33,7 @@ int win (Pion plateau[COLONNES][LIGNES], int ligne, int colonne, int joueur ) {
                 score = 2;
     }
 
-    // Si l'un des deux joueurs n'a toujours pas gagné, alors on vérifie d'autres combinaisons possibles
+    // Si l'un des deux joueurs n'a toujours pas gagné, alors on vérifie horizontalement
     if ( score != 1 && score != 2 ) {
 
         // Vérification horizontale à gauche
@@ -54,7 +54,82 @@ int win (Pion plateau[COLONNES][LIGNES], int ligne, int colonne, int joueur ) {
                 break;
         }
 
-        // Si trois pions alignés horizontalement alors le joueur à gagné
+        // Si quatres pions alignés horizontalement alors le joueur à gagné
+        if ( streak == 3 )
+            if ( joueur == 1 )
+                score = 1;
+            else
+                score = 2;
+    }
+
+    // ---- vérification diagonale gauche
+    if ( score != 1 && score != 2 ) {
+        int count = 1;
+        streak = 0;
+
+        // Diagonale montante
+        for ( int i = 1 ; i < 4 ; i++ ) {
+            if ( strcmp ( plateau [ ( colonne - 1 ) - i ] [ ( ligne - 1 ) - count ].color, couleur ) == 0 ) {
+                count++; // Incrémentation du compteur de ligne
+                streak++; // Incrémentation du compteur de pions alignés
+
+            } else {
+                count = 1;
+                break;
+            }
+        }
+
+        // Diagonale descendente
+        for ( int i = 1 ; i < 4 ; i++ ) {
+            if ( strcmp ( plateau [ ( colonne - 1 ) + i ] [ ( ligne - 1 ) + count ].color, couleur ) == 0 ) {
+                count++;
+                streak++;
+
+            } else {
+                count = 1;
+                break;
+            }
+        }
+
+        // Si quatres pions alignés diagonalement alors le joueur à gagné
+        if ( streak == 3 )
+            if ( joueur == 1 )
+                score = 1;
+            else
+                score = 2;
+    }
+
+
+    // Vérification diagonale droite
+    if ( score != 1 && score != 2 ) {
+        int count = 1;
+        streak = 0;
+
+        // Diagonale montante
+        for ( int i = 1 ; i < 4 ; i++ ) {
+            if ( strcmp ( plateau [ ( colonne - 1 ) + i ] [ ( ligne - 1 ) - count ].color, couleur ) == 0 ) {
+                count++; // Incrémentation du compteur de ligne
+                streak++; // Incrémentation du compteur de pions alignés
+
+            } else {
+                count = 1;
+                break;
+            }
+        }
+
+        // Diagonale descendente
+        for ( int i = 1 ; i < 4 ; i++ ) {
+            if ( strcmp ( plateau [ ( colonne - 1 ) - i ] [ ( ligne - 1 ) + count ].color, couleur ) == 0 ) {
+                count++;
+                streak++;
+
+            } else {
+                count = 1;
+                break;
+            }
+        }
+
+        // Si quatres pions alignés diagonalement alors le joueur à gagné
         if ( streak == 3 )
             if ( joueur == 1 )
                 score = 1;
