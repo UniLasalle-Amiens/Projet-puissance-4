@@ -31,6 +31,13 @@ void game ( int choix, int level_IA ) {
             color ( ROUGE );
             printf ( "\n\nLe joueur 1 à gagné !!" );
             color ( RESET );
+
+            #ifdef __linux__
+            flush_linux ();
+            #elif __APPLE__
+            fflush ( stdin );
+            #endif
+
             PAUSE ();
             loop = false;
             break;
@@ -39,6 +46,13 @@ void game ( int choix, int level_IA ) {
             color ( JAUNE );
             printf ( "\n\nLe joueur 2 à gagné !!" );
             color ( RESET );
+
+            #ifdef __linux__
+            flush_linux ();
+            #elif __APPLE__
+            fflush ( stdin );
+            #endif
+
             PAUSE ();
             loop = false;
             break;
@@ -96,7 +110,7 @@ void game ( int choix, int level_IA ) {
                         col = random_number ();
 
                     altern *= -1;
-                    
+
                 } else
                     col = jouerCoup ( plateau, JAUNE );
             }
@@ -158,12 +172,6 @@ void game ( int choix, int level_IA ) {
 
         } else {
             reply = false;
-
-            #ifdef __linux__
-            flush_linux ();
-            #elif __APPLE__
-            fflush ( stdin );
-            #endif
 
             printf ( "\n\n" );
 
