@@ -1,10 +1,10 @@
 # Projet n°1 d'informatique de 2ème année
 
-> Projet réalisé par BREBION Mathis et rapport rédigé par CHATELET Emma
+> Projet réalisé par BREBION Mathis et CHATELET Emma
 
-## How to compile and debug on LINUX and MAC with "make"
+## Comment compiler and lancer le programme sur LINUX et MAC avec "make"
 
-> On the main repository | require gcc
+> Dans le répertoire parent | require gcc
 
 ```batch
 make compile
@@ -14,9 +14,9 @@ make compile
 make debug
 ```
 
-## How to compile and debug on WINDOWS
+## Comment compiler et lancer le programme sur WINDOWS
 
-> On the main repository | require gcc
+> Dans le répertoire parent | require gcc
 
 ```batch
 gcc main.c -o <output name file>
