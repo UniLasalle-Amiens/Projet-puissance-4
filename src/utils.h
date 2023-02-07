@@ -33,7 +33,7 @@
 */
 void PAUSE () {
     #ifndef WIN32
-        printf ( "\n\nAppuyer sur une entree pour continuer..." );
+        printf ( "\n\nAppuyer sur entree pour continuer..." );
         getchar ();
 
     #else
