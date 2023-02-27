@@ -12,7 +12,9 @@
 #define COLONNES 7
 
 #define NB_PIONS 42
-#define NB_PIONS_EQUIPE 21
+
+#define AI_PLAYER 2
+#define HUMAN_PLAYER 1
 
 
 // Constantes Couleurs
@@ -56,7 +58,7 @@ void color ( char c [] ) {
  * Permet d'afficher dans la console le contenu du fichier ouvert
  * @name printFile
  * @param *file fichier possédant le contenue à afficher
- * @return integer || void
+ * @return integer | void
 */
 int printFile ( FILE *file ) {
     char line [ 256 ];
@@ -70,6 +72,53 @@ int printFile ( FILE *file ) {
         while ( fgets ( line, sizeof ( line ), file ) != NULL )
             printf ( "\t%s", line );
     }
+}
+
+
+/**
+ * @brief min
+ * Fonction de comparaison ; retourne le plus petit
+ * @param a Premier entier
+ * @param b Deuxième entier
+ * @return a | b
+*/
+int min ( int a, int b ) {
+    return ( a < b ) ? a : b;
+}
+
+
+/**
+ * @brief max
+ * Fonction de comparaison ; retourne le plus grand
+ * @param a Premier entier
+ * @param b Deuxième entier
+ * @return a | b
+*/
+int max ( int a, int b ) {
+    return ( a > b ) ? a : b;
+}
+
+
+/**
+ * @brief get_row
+ * @param plateau Plateau de jeu
+ * @param column Colonne où placer le pion
+ * @return row - ligne vide où placer le pion dans la colonne choisie
+*/
+int get_row ( Pion plateau [ COLONNES ] [ LIGNES ], int column ) {
+    bool down = true;
+    int line = 0;
+    
+    do {
+        if ( plateau [ column ] [ line ].character != '0' && line < LIGNES )
+            line++;
+
+        else
+            down = false;
+
+    } while ( down );
+
+    return line - 1;
 }
 
 /**

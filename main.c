@@ -4,10 +4,11 @@
 #include <string.h>
 #include <time.h>
 #include <limits.h>
+#include <assert.h>
 
 // Utilitaires
-#include "src/utils.h"
 #include "src/structs.h"
+#include "src/utils.h"
 
 // Affichage
 #include "src/afficherMenu.h"
@@ -21,9 +22,9 @@
 #include "src/app/win.h"
 
 // AI
-#include "src/app/AI/evaluerScore.h"
-#include "src/app/AI/getLigneLibre.h"
-#include "src/app/AI/jouerCoup.h"
+#include "src/app/AI/evaluate.h"
+#include "src/app/AI/minimax.h"
+#include "src/app/AI/meilleurCoup.h"
 
 #include "src/app/game.h"
 

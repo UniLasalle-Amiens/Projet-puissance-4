@@ -8,7 +8,7 @@
  * @param ligne Ligne correspondante au dernier pion posé
  * @param colonne Colonne correspondante au dernier pion posé
  * @param joueur Joueur venant de jouer
- * @return 0 | 1 | 2
+ * @return 0 | 1 | 2 ; Aucun des deux joueurs | joueur 1 gagnant | joueur 2 gagnant
 */
 int win (Pion plateau[COLONNES][LIGNES], int ligne, int colonne, int joueur ) {
     int score = 0;

@@ -16,8 +16,7 @@ void game ( int choix, int level_IA ) {
     int joueur = 2; // 1 ou 2 En fonction du joueur qui doit jouer
     int col; // Colonne choisie par l'utilisateur ou par l'IA
     int ligne; // Ligne où le pion est tombé
-
-    int altern = 1; // Variable permettant d'alterner les coups joués par l'IA / un coup fort, un coup faible
+    int count; // Compteur de pions joué - tour par tour
 
     bool ask; // Variable locale pour la gestion d'erreur de saisie de l'utilisateur
 
@@ -58,6 +57,23 @@ void game ( int choix, int level_IA ) {
             break;
         }
 
+        if ( count == NB_PIONS ) {
+            color ( CYAN );
+            printf ( "\n\nAucun des deux joueurs n'a gagné !\n" );
+            printf ( "Match nul" );
+            color ( RESET );
+
+            #ifdef __linux__
+            flush_linux ();
+            #elif __APPLE__
+            fflush ( stdin );
+            #endif
+
+            PAUSE ();
+            loop = false;
+            break;
+        }
+
         if ( !reply )
             joueur = tourJoueur ( joueur ); // Permet le changement de joueur
         
@@ -80,7 +96,7 @@ void game ( int choix, int level_IA ) {
                     scanf ( "%d", &col );
 
                     // Gestion des potentielles erreurs de saisie de l'utilisateur
-                    if ( col < 1 || col > 7 ) {
+                    if ( col < 1 || col > COLONNES ) {
                         printf ( "\n\nVous devez choisir une colonne parmis celles disponibles sur la plateau" );
 
                         #ifdef __linux__
@@ -103,16 +119,11 @@ void game ( int choix, int level_IA ) {
                 if ( level_IA == 1 )
                     col = random_number (); // Génération d'un nombre entier aléatoire entre 1 et 7 inclus
 
-                else if ( level_IA == 2 ) {
-                    if ( altern == 1 )
-                        col = jouerCoup ( plateau, JAUNE );
-                    else
-                        col = random_number ();
-
-                    altern *= -1;
-
-                } else
-                    col = jouerCoup ( plateau, JAUNE );
+                else if ( level_IA == 2 )
+                    col = meilleurCoup ( plateau, 2, joueur ) + 1;
+                
+                else
+                    col = meilleurCoup ( plateau, 4, joueur ) + 1;
             }
 
         } else {
@@ -180,6 +191,7 @@ void game ( int choix, int level_IA ) {
             
 
             score = win ( plateau, ligne, col, joueur );
+            count++;
         }
     }
 }
