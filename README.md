@@ -4,7 +4,7 @@
 
 Projet réalisé en C et jouable en console
 
-## Compiler and run le programme sur LINUX et MAC avec "make"
+## Compiler et lancer le programme sur LINUX et MAC avec "make"
 
 > Dans le répertoire parent | require gcc
 
@@ -16,7 +16,7 @@ make compile
 make debug
 ```
 
-## Compiler et run le programme sur WINDOWS
+## Compiler et lancer le programme sur WINDOWS
 
 > Dans le répertoire parent | require gcc
 
